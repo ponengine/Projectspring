@@ -63,24 +63,15 @@ public class ProductController {
 	public String getAddNewProductForm(Model model) {
 	Product newProduct = new Product();
 	model.addAttribute("newProduct", newProduct);
-	System.out.println(model);
 	return "addProduct";
 	} 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddNewProductForm(@ModelAttribute("newProduct") Product newProduct, BindingResult result) {
+	public String processAddNewProductForm(@ModelAttribute("newProduct")
+	Product newProduct) {
 	productService.addProduct(newProduct);
-	System.out.println(productService);
-	String[] suppressedFields = result.getSuppressedFields();
-	if (suppressedFields.length > 0) {
-	throw new RuntimeException("Attempting to bind disallowed fields: "
-	+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
-	}
 	return "redirect:/products/all";
 	}
-	@InitBinder
-	public void initialiseBinder(WebDataBinder binder) {
-	binder.setDisallowedFields("unitsInOrder", "discontinued");
-	}
+
 	@Autowired
 	private ProductService productService;
 

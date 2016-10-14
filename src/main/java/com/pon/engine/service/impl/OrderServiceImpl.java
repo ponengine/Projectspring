@@ -17,7 +17,7 @@ public class OrderServiceImpl implements OrderService{
 	private ProductRepository productRepository;
 	
 
-	public void processOrder(String productId, int count) {
+	public void processOrder(String productId,int count) {
 Product productById = productRepository.getProductById(productId);
 		
 		if(productById.getUnitsInStock() < count){
@@ -27,4 +27,7 @@ Product productById = productRepository.getProductById(productId);
 		productById.setUnitsInStock(productById.getUnitsInStock() - count);
 		
 	}
+
+
+
 }
