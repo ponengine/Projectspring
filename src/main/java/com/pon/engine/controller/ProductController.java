@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,17 +62,32 @@ public class ProductController {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String getAddNewProductForm(Model model) {
 	Product newProduct = new Product();
+	
+	Random number = new Random();
+	int Number = number.nextInt(9999)+1000;
+	String strNumber=Integer.toString(Number);
+	newProduct.setProductId("P"+strNumber);
 	model.addAttribute("newProduct", newProduct);
 	return "addProduct";
 	} 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddNewProductForm(@ModelAttribute("newProduct")
-	Product newProduct) {
+	Product newProduct, BindingResult result) {
+	System.out.println(productService);	
 	productService.addProduct(newProduct);
+	
+	String[] suppressedFields = result.getSuppressedFields();
+	if (suppressedFields.length > 0) {
+	throw new RuntimeException("Attempting to bind disallowed fields: "
+	+ StringUtils.arrayToCommaDelimitedString(suppressedFields));}
 	return "redirect:/products/all";
 	}
 
 	@Autowired
 	private ProductService productService;
-
+	@InitBinder
+	public void initialiseBinder(WebDataBinder binder){
+		binder.setAllowedFields("productId","name","unitPrice","description","manufacturer","category","unitsInStock", "condition","productImage","language");
+	}
+	
 }
