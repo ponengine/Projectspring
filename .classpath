@@ -38,24 +38,27 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-aop-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-aspects-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-beans-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-context-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-context-support-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-core-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-expression-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-instrument-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-instrument-tomcat-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-jdbc-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-jms-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-orm-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-oxm-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-struts-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-test-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-tx-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-web-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-webmvc-3.2.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/3.2.0/libs/spring-webmvc-portlet-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-aop-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-aspects-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-beans-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-build-src-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-context-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-context-support-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-core-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-expression-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-framework-bom-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-instrument-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-instrument-tomcat-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-jdbc-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-jms-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-messaging-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-orm-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-oxm-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-test-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-tx-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-web-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-webmvc-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-webmvc-portlet-4.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LUCIFER/Desktop/DirectoryWork/lib/4.0.1/libs/spring-websocket-4.0.1.RELEASE.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
