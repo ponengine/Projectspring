@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans 
-	xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:beans="http://www.springframework.org/schema/beans"
-	xsi:schemaLocation="
-	http://www.springframework.org/schema/mvc 
-	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-	http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/context 
-	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xsi:schemaLocation="http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -39,4 +36,36 @@
 
 
 	
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<beans:property name="maxUploadSize" value="10240000"></beans:property>
+	</beans:bean>
+	
+	<beans:bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+	<beans:property name="defaultViews">
+		<beans:list>
+			<beans:ref bean="jsonView" />
+			<beans:ref bean="xmlView" />
+		</beans:list>
+	</beans:property>
+	</beans:bean>
+	<beans:bean id="jsonView"
+		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+	<beans:property name="prettyPrint" value="true"></beans:property>
+	</beans:bean>
+	<beans:bean id="xmlView"
+		class="org.springframework.web.servlet.view.xml.MarshallingView">
+	<beans:constructor-arg>
+		<beans:bean
+			class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+
+		<beans:property name="classesToBeBound">
+			<beans:list>
+				<beans:value >com.pon.engine.domain.Product</beans:value>
+			</beans:list>
+		</beans:property>
+		</beans:bean>
+	</beans:constructor-arg>
+	</beans:bean>
 </beans:beans>

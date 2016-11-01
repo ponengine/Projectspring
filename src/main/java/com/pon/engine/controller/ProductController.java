@@ -1,10 +1,13 @@
 package com.pon.engine.controller;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import com.pon.engine.service.*;
 import com.pon.engine.domain.Product;
@@ -53,6 +57,14 @@ public class ProductController {
 		System.out.println("Model:" + model);
 		return "products";
 	}
+	@RequestMapping("/logout")
+	public String logout(){
+		return "logout";
+	}
+	@RequestMapping("/failed")
+	public String failed(){
+		return "failed";
+	}
 	@RequestMapping("/product")
 	public String getProductById(@RequestParam("id") String productId,
 	Model model) {
@@ -68,26 +80,36 @@ public class ProductController {
 	String strNumber=Integer.toString(Number);
 	newProduct.setProductId("P"+strNumber);
 	model.addAttribute("newProduct", newProduct);
+	System.out.println(newProduct);
 	return "addProduct";
 	} 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddNewProductForm(@ModelAttribute("newProduct")
-	Product newProduct, BindingResult result) {
-	System.out.println(productService);	
-	productService.addProduct(newProduct);
+	Product newProduct, BindingResult result, HttpServletRequest request) {
 	
 	String[] suppressedFields = result.getSuppressedFields();
 	if (suppressedFields.length > 0) {
 	throw new RuntimeException("Attempting to bind disallowed fields: "
 	+ StringUtils.arrayToCommaDelimitedString(suppressedFields));}
-	return "redirect:/products/all";
+	
+	MultipartFile productImage =newProduct.getProductImage();
+	String rootDirectory=request.getSession().getServletContext().getRealPath("/");
+	if (productImage!=null && !productImage.isEmpty()) {
+	try {
+	productImage.transferTo(new File(rootDirectory+"resources\\images\\"+newProduct.getProductId() + ".jpg"));
+	} catch (Exception e) {
+	throw new RuntimeException("Product Image saving failed",e);
+	}
+	}
+	productService.addProduct(newProduct);
+	return "forward:/products/all";
 	}
 
 	@Autowired
 	private ProductService productService;
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder){
-		binder.setAllowedFields("productId","name","unitPrice","description","manufacturer","category","unitsInStock", "condition","productImage","language");
+		binder.setAllowedFields("productId","name","unitPrice","description","manufacturer","category","unitsInStock", "condition","productImage","language", "productImage");
 	}
 	
 }
