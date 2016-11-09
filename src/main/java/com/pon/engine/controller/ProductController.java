@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,6 +28,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pon.engine.service.*;
 import com.pon.engine.domain.Product;
 import com.pon.engine.domain.repository.ProductRepository;
+import com.pon.engine.exception.NoProductsFoundUnderCategoryException;
+import com.pon.engine.exception.ProductNotFoundException;
 
 
 @Controller
@@ -44,11 +47,24 @@ public class ProductController {
 
 	@RequestMapping("/{category}")
 	public String getProductsByCategory(Model model, @PathVariable("category") String productCategory) {
-		System.out.println(productCategory);
+		
+		if (productCategory == null || productCategory.isEmpty()) {
+			throw new NoProductsFoundUnderCategoryException();
+			}	
 		model.addAttribute("products", productService.getProductsByCategory(productCategory));
 		return "products";
 	}
 
+	@ExceptionHandler(ProductNotFoundException.class)
+	public ModelAndView handleError(HttpServletRequest
+	req,ProductNotFoundException exception) {
+	ModelAndView mav = new ModelAndView();
+	mav.addObject("invalidProductId", exception.getProductId());
+	mav.addObject("exception", exception);
+	mav.addObject("url",req.getRequestURL()+"?"+req.getQueryString());
+	mav.setViewName("productNotFound");
+	return mav;
+	}
 	@RequestMapping("/filter/{ByCriteria}")
 	public String getProductsByFilter(@MatrixVariable(pathVar = "ByCriteria") Map<String, List<String>> filterParams,
 			Model model) {
@@ -110,6 +126,11 @@ public class ProductController {
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder){
 		binder.setAllowedFields("productId","name","unitPrice","description","manufacturer","category","unitsInStock", "condition","productImage","language", "productImage");
+	}
+	@RequestMapping
+	public String list(Model model) {
+		model.addAttribute("products", productService.getAllProducts());
+		return "products";
 	}
 	
 }

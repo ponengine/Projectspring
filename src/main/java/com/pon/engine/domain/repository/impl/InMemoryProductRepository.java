@@ -10,6 +10,7 @@ import java.util.Set;
 import org.springframework.stereotype.Repository;
 import com.pon.engine.domain.Product;
 import com.pon.engine.domain.repository.ProductRepository;
+import com.pon.engine.exception.ProductNotFoundException;
 
 @Repository
 public class InMemoryProductRepository implements ProductRepository {
@@ -51,7 +52,7 @@ public class InMemoryProductRepository implements ProductRepository {
 			}
 		}
 		if (productById == null) {
-			throw new IllegalArgumentException("No products found with theproduct id: " + productId);
+			throw new ProductNotFoundException("No products found with theproduct id: " + productId);
 		}
 		return productById;
 	}

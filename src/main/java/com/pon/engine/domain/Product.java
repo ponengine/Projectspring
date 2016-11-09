@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
+
+
 @XmlRootElement
 public class Product {
 	private String productId;
