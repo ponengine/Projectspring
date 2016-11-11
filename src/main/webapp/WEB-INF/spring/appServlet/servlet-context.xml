@@ -12,8 +12,9 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	
-	<context:annotation-config></context:annotation-config> 
- 	<mvc:annotation-driven enable-matrix-variables="true"/>
+	<context:annotation-config></context:annotation-config>
+	<mvc:annotation-driven enable-matrix-variables="true"
+		validator="validator" />
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
@@ -67,4 +68,22 @@
 	</beans:constructor-arg>
 	</beans:bean> 
 	
+	<mvc:interceptors>
+		<beans:bean class="com.pon.engine.interceptor.PerformanceMonitorInterceptor"></beans:bean>
+		<beans:bean class="com.pon.engine.interceptor.AuditingInterceptor"          ></beans:bean>
+		
+		<beans:bean
+		class="com.pon.engine.interceptor.PromoCodeInterceptor">
+	<beans:property name="promoCode" value="OFF3R"></beans:property>
+	<beans:property name="errorRedirect" value="invalidPromoCode"></beans:property>
+	<beans:property name="offerRedirect" value="products"></beans:property>
+	</beans:bean>
+	</mvc:interceptors>
+	
+	<beans:bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	<beans:property name="validationMessageSource"
+		ref="messageSource">
+	</beans:property>
+	</beans:bean>
 </beans:beans>

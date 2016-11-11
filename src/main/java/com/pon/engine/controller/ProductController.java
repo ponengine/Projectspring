@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,7 +45,10 @@ public class ProductController {
 		modelAndView.setViewName("products");
 		return modelAndView;
 	}
-
+	@RequestMapping("/invalidPromoCode")
+	public String invalidPromoCode() {
+	return "invalidPromoCode";
+	}
 	@RequestMapping("/{category}")
 	public String getProductsByCategory(Model model, @PathVariable("category") String productCategory) {
 		
@@ -101,7 +105,7 @@ public class ProductController {
 	} 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddNewProductForm(@ModelAttribute("newProduct")
-	Product newProduct, BindingResult result, HttpServletRequest request) {
+	@Valid Product newProduct, BindingResult result, HttpServletRequest request) {
 	
 	String[] suppressedFields = result.getSuppressedFields();
 	if (suppressedFields.length > 0) {
@@ -117,6 +121,9 @@ public class ProductController {
 	throw new RuntimeException("Product Image saving failed",e);
 	}
 	}
+	if(result.hasErrors()) {
+		return "addProduct";
+		}
 	productService.addProduct(newProduct);
 	return "forward:/products/all";
 	}
